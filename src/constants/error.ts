@@ -1,1 +1,1 @@
-export const SUCCESS = 10000 // 返回成功
+export const SUCCESS = 0 // 返回成功

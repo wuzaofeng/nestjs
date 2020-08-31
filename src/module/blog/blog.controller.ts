@@ -3,7 +3,9 @@ import { Controller, Get, Param, Query, Post, Body, Render, Request, HttpExcepti
 import { SUCCESS } from '../../constants/error'
 import { AddBlogDto } from './blog.dto';
 import { BlogService } from './blog.service'
+import { ApiTags, ApiParam, ApiHeader } from '@nestjs/swagger';
 
+@ApiTags('blog文档')
 @Controller('blog')
 export class BlogController {
 
@@ -21,12 +23,20 @@ export class BlogController {
   getList () {
     const list = this.blogService.findAll()
     return {
-      success: SUCCESS,
       list
     }
   }
 
   @Get(':id')
+  @ApiParam({
+    name: 'id',
+    description: '用户ID，唯一标识'
+  })
+  @ApiHeader({
+    name: 'token',
+    required: true,
+    description: '本次请求请带上token',
+  })
   getDetail(@Param('id') id: string) {
     return {
       id
@@ -35,7 +45,6 @@ export class BlogController {
 
   @Post('addBlog')
   addBlog(@Body() addBlogDto: AddBlogDto) {
-    console.log(addBlogDto)
     return addBlogDto
   }
 

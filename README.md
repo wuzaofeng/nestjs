@@ -87,3 +87,17 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 =》请求结束
 
 有异常，抛出异常过滤器
+
+### 搭建
+
+1. 通过守卫实现拦截权限功能
+
+2. 统一返回体内容
+
+3. 统一处理全局异常捕获过滤器
+
+4. 静态资源服务
+
+5. swagger创建文档
+
+6. 模板引擎配置
