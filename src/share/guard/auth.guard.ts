@@ -29,11 +29,13 @@ export class AuthGuard implements CanActivate {
 
   // 白名单数组
   private whiteRoutes: string[] = [
-    '/blog/getlist'
+    '/blog/getlist',
+    '/activity'
   ]
 
   // 一年该次请求是否在白名单内
   private isWhiteRoute(routers: string[], url: string): boolean {
-    return routers.includes(url)
+    const regx = new RegExp(`^${url}`)
+    return routers.some(router => regx.test(router))
   }
 }

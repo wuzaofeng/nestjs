@@ -5,10 +5,14 @@ import { AppService } from './app.service';
 import { BlogModule } from './module/blog/blog.module';
 import { UserModule } from './module/user/user.module';
 import { UserService } from './module/user/user.service';
-import { AuthModule } from './module/auth/auth.module';
 import { LoggerMiddleware } from './share/middleware/logger.middleware';
-import { AuthService } from './module/auth/auth.service';
+import { ActivityModule } from './activity/activity.module';
 // import configuration from './config'
+
+import * as cookieParser from 'cookie-parser'
+import * as helmet from 'helmet';
+import * as csurf from 'csurf';
+import * as compression from 'compression';
 
 // 环境变量路径
 const envFilePath = process.env.NODE_ENV === 'development' ? '.env.development' : '.env.production'
@@ -16,12 +20,20 @@ const envFilePath = process.env.NODE_ENV === 'development' ? '.env.development' 
   imports: [ConfigModule.forRoot({
     isGlobal: true,
     envFilePath: ['.env', envFilePath]
-  }), BlogModule, UserModule, AuthModule],
+  }), BlogModule, UserModule, ActivityModule],
   controllers: [AppController],
-  providers: [AppService, UserService, AuthService],
+  providers: [AppService, UserService],
 })
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware)
+    const middlewares = [
+      cookieParser,
+      helmet,
+      csurf,
+      compression
+    ];
+
+    consumer.apply(...middlewares)
   }
 }

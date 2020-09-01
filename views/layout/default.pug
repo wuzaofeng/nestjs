@@ -1,7 +1,22 @@
 //- index.pug
 doctype html
 html
-  include includes/head.pug
+  meta(charset="utf-8")
+  meta(http-equiv="x-ua-compatible" content="ie=edge,chrome=1")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no")
+
+  block title
+    title 华盛通活动页面
+  
+  block keyword
+    meta(name="keyword" content="golang,go,go语言,golang社区,go社区,golang中国,go中国,golang中文社区,go中文社区,go语言中文网,社区")
+
+  block description
+    meta(name="description" content="米粒网 - 一个专业的Go语言技术社区，帮助你寻找答案，分享知识。")
+
   body
-    h1 My Site
-    p Welcome to my super lame site.
+    block content
+    block foot
+      #footer
+        p 一些页脚的内容
+    block scripts

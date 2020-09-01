@@ -92,7 +92,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 1. 通过守卫实现拦截权限功能
 
-2. 统一返回体内容
+2. 统一返回体内容（优化）
 
 3. 统一处理全局异常捕获过滤器
 
@@ -101,3 +101,5 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 5. swagger创建文档
 
 6. 模板引擎配置
+
+7. 链接可配置化，返回模板渲染

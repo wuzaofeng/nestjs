@@ -19,12 +19,14 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     const { message } = exception
 
     const msgLog = {
-      statusCode: status, // 系统错误状态
+      errorCode: status, // 系统错误状态
       timestamp: new Date().toISOString(), // 错误日期
       path: request.url, // 错误路由
       message: '请求错误',
       data: message // 错误消息内容体
     }
+
+    console.log(message)
 
     // 打印错误综合日志
     Logger.error(

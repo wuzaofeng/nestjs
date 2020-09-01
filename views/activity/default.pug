@@ -1,0 +1,18 @@
+doctype html
+html(lang="zh-cn")
+  head
+    title #{title}
+    meta(name="keywords"  content=keywords)
+    meta(name="description" content=description)
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no")
+    link(rel="stylesheet", href="https://r.hstong.com/v2/hst-ui/h5/css/rem-base.v2.css")
+    link(rel="stylesheet", href="/static/css/style.css")
+  body
+    each src in images
+      img(src=src)
+    div(class="features")
+      #{content}
+    div(class="display-flex footer")
+      if !isInApp
+        a(class="download" href="javascript:void(0);" @click="downloadHstApp()")  下载APP
+      a(class="cy-btn not-app" href="javascript:void(0);" @click="takeNewShot()") 我要打新

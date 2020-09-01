@@ -3,9 +3,6 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import {join} from 'path';
 import { Logger } from '@nestjs/common';
-import * as cookieParser from 'cookie-parser'
-import * as helmet from 'helmet';
-import * as csurf from 'csurf';
 
 import { AppModule } from './app.module';
 import { AuthGuard } from './share/guard/auth.guard';
@@ -37,9 +34,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
 
-  // 配置cookie中间件
-  app.use(cookieParser());
-
   // 全局注册守卫
   app.useGlobalGuards(new AuthGuard());
 
@@ -48,11 +42,6 @@ async function bootstrap() {
 
   // 全局注册拦截器
   app.useGlobalInterceptors(new ResponseInterceptor())
-
-  app.use(helmet());
-  app.use(csurf({
-    cookie: true
-  }));
 
   const port = process.env.PORT || 3000
 

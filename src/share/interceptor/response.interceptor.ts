@@ -1,7 +1,8 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor, BadGatewayException } from '@nestjs/common';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-import { SUCCESS } from 'src/constants/error';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { ErrorCode } from '../../constants/error';
 
 // 全局响应拦截器，统一返回体内容
 @Injectable()
@@ -23,21 +24,46 @@ export class ResponseInterceptor implements NestInterceptor {
     // const ctx = context.switchToHttp();
     // const request = ctx.getRequest();
     
-    // return next.handle().pipe(
-    //   map(data => {
-    //     console.log('全局响应拦截器方法返回内容后');
-    //     return {
-    //       statusCode: SUCCESS,
-    //       timestamp: new Date().toISOString(),
-    //       path: request.url,
-    //       message: '请求成功',
-    //       data
-    //     }
-    //   })
-    // )
+    return next.handle().pipe(
+      map(data => {
+        console.log('全局响应拦截器方法返回内容后');
+        console.log('datadata', data)
+
+        if (typeof data === 'undefined') {
+          // 请求页面
+          return data;
+        }
+
+        // api接口请求
+        const newData = data as any;
+        // 请求成功
+        if (typeof data.statusCode === 'undefined') {
+          return {
+              data: data,
+              errorCode: ErrorCode.SUCCESS.CODE,
+              message: 'success'
+          };
+        }
+ 
+        // 请求失败
+        let errorCode, message;
+        if (ErrorCode.HasCode(newData.statusCode)) {
+          errorCode = newData.statusCode;
+          message = ErrorCode.CodeToMessage(errorCode);
+        } else {
+          errorCode = ErrorCode.ERROR.CODE;
+          message = ErrorCode.ERROR.MESSAGE;
+        }
+        return {
+          errorCode,
+          message,
+          data: newData.message
+        };
+      })
+    )
 
     // 异常映射
-    console.log('异常映射')
-    return next.handle().pipe(catchError(err => throwError(new BadGatewayException())))
+    // console.log('异常映射')
+    // return next.handle().pipe(catchError(err => throwError(new BadGatewayException())))
   }
 }
