@@ -1,6 +1,4 @@
-import { Controller, Get, Param, Post, Body, Render, Request } from '@nestjs/common';
-// import { Request } from 'express'
-import { ErrorCode } from '../../constants/error';
+import { Controller, Get, Param, Post, Body, Render, Response, Request } from '@nestjs/common';
 import { AddBlogDto } from './blog.dto';
 import { BlogService } from './blog.service'
 import { ApiTags, ApiParam, ApiHeader } from '@nestjs/swagger';
@@ -13,7 +11,11 @@ export class BlogController {
 
   @Get()
   @Render('blog/index')
-  root() {
+  root(@Request() req, @Response() res) {
+    // 获取cookie
+    console.log(req.signedCookies.name)
+    // 设置cookie
+    res.cookie("name",'zhangsan',{maxAge: 900000, httpOnly: true, signed: true}); 
     return {
       message: 'Hello blog'
     }
@@ -27,7 +29,7 @@ export class BlogController {
     }
   }
 
-  @Get(':id')
+  @Get('detail/:id')
   @ApiParam({
     name: 'id',
     description: '用户ID，唯一标识'
@@ -46,16 +48,5 @@ export class BlogController {
   @Post('addBlog')
   addBlog(@Body() addBlogDto: AddBlogDto) {
     return addBlogDto
-  }
-
-  @Get('setCookies')
-  setCookies(@Request() req) {
-    // 不加密设置
-    req.cookie('value','xxx',{maxAge:1000*60*10,httpOnly:true})
-    //加密设置
-    // req.cookie('value','xxx',{maxAge:1000*60*10,httpOnly:true, signed:true})
-    return {
-      a: 1
-    }
   }
 }

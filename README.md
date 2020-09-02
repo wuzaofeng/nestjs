@@ -98,8 +98,12 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 4. 静态资源服务
 
-5. swagger创建文档
+5. swagger创建api文档
 
-6. 模板引擎配置
+6. 模板引擎配置 pug
 
 7. 链接可配置化，返回模板渲染
+
+8. 统一config配置
+
+9. 自定义输出

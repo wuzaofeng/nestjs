@@ -8,12 +8,17 @@ import { AppModule } from './app.module';
 import { AuthGuard } from './share/guard/auth.guard';
 import { HttpExceptionFilter } from './share/filters/http-exception.filter';
 import { ResponseInterceptor } from './share/interceptor/response.interceptor';
+import { ConfigService } from '@nestjs/config';
+import { MyLoggerService } from './common/logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     // 日志输出
     logger: new Logger()
   })
+
+  const configService: ConfigService = app.get(ConfigService)
+  // const myLoggerService: MyLoggerService = app.get(MyLoggerService);
 
   // 静态资源配置
   app.useStaticAssets(join(__dirname, '..', 'public'),{
@@ -43,9 +48,14 @@ async function bootstrap() {
   // 全局注册拦截器
   app.useGlobalInterceptors(new ResponseInterceptor())
 
-  const port = process.env.PORT || 3000
+  const port = configService.get<string>('server.port')
 
   await app.listen(port);
-  console.log('http://localhost:' + port)
+
+  console.log({
+    NODE_ENV: process.env.NODE_ENV,
+    port,
+    url: `http://localhost:${port}`
+  })
 }
 bootstrap();

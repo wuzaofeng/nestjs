@@ -26,7 +26,6 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
       data: message // 错误消息内容体
     }
 
-    console.log(message)
 
     // 打印错误综合日志
     Logger.error(
