@@ -1,4 +1,4 @@
-<p align="center">
+<!-- <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
@@ -20,7 +20,7 @@
 <a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
   <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
   <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
+</p> -->
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
@@ -47,33 +47,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
-
 ### 学习文档
 
 [nestjs 英文文档](https://docs.nestjs.com/middleware)
@@ -94,14 +67,25 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ### 搭建
 
 通过@nestjs/cli快捷搭建项目
-```
+
+```bash
 npm i -g @nestjs/cli
 ```
 
 创建项目之后可通过快捷命令行创建项目
-```
+
+```bash
 npm g 
 ```
+
+|  name   | alias   |
+|  ----  | ----  |
+| configuration  | config |
+| controller  | co |
+| guard  | gu |
+| module  | mo |
+| pipe  | pi |
+| service  | s |
 
 ### 概念
 #### 中间件(middleware)
