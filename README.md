@@ -74,14 +74,17 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
   Nest is [MIT licensed](LICENSE).
 
-## 学习文档
+### 学习文档
 
 [nestjs 英文文档](https://docs.nestjs.com/middleware)
+
 [nestjs 中文文档](https://docs.nestjs.cn/7/firststeps)
+
 [nestjs 中文网](https://www.itying.com/nestjs/)
 
+[pug模板引擎](https://www.pugjs.cn/language/inheritance.html)
 
-### nestjs 流程
+### nestjs 执行流程
 发起请求 =》 中间件（middleware） =》守卫（guard） =》拦截器（interceptor） 
 =》 管道(pipe) =》执行方法(控制器方法) =》拦截器（interceptor） 
 =》请求结束
@@ -90,20 +93,116 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ### 搭建
 
-1. 通过守卫实现拦截权限功能
+通过@nestjs/cli快捷搭建项目
+```
+npm i -g @nestjs/cli
+```
 
-2. 统一返回体内容（优化）
+创建项目之后可通过快捷命令行创建项目
+```
+npm g 
+```
 
-3. 统一处理全局异常捕获过滤器
+### 概念
+#### 中间件(middleware)
+路由处理程序之前调用的函数
 
-4. 静态资源服务
+#### 守卫(guard)
+授权的控制如权限访问，角色等，是属于中间件的一种特殊处理方式，细分了出来
+还有多个`ExecutionContext`对象，执行上下文
 
-5. swagger创建api文档
+全局设置 useGlobalGuards
 
-6. 模板引擎配置 pug
+局部设置 UseGuards
 
-7. 链接可配置化，返回模板渲染
+#### 拦截器
 
-8. 统一config配置
+`controller`函数前后执行
 
-9. 自定义输出
+#### 管道(pipe)
+
+1. 转换数据
+2. 验证数据
+
+#### 异常过滤器
+
+基础内置异常
+
+BadRequestException
+
+UnauthorizedException
+
+NotFoundException
+
+ForbiddenException
+等等
+
+#### 模块化
+nestjs项目分模块化，引入导出模块之后，也就会注入对应模块的服务层
+
+
+### 项目目录结构
+
+```
+- public                 静态资源目录
+    - css                样式文件
+    - images             图片文件
+
+- src
+    - commom            公共模块
+        logger          自定义日志服务
+
+    - config            配置模块
+        cfg.default     默认配置
+        cfg.dev         开发环境配置
+        cfg.prod        生产，测试环境配置
+    
+    - constants         变量参数目录
+        error           错误码目录
+        
+    - core              核心模块
+        exception       
+            custom.expection 错误码异常抛出
+        filters         异常过滤器日志处理
+            http-exception.filter
+        guard
+            auth.guard  全局权限守卫，是否需要token, 或者白名单处理
+        interceptor
+            response.interceptor 响应拦截器处理
+        middleware
+            compression 响应压缩拦截器
+            cookie-parser cookie解析拦截器
+            cors        跨域
+            csrf, helmet    安全 ??
+            locals      全局配置
+    
+- module    模块文件
+    - activity  活动模块
+    - blog
+    - user
+
+app.controllor  根控制器
+app.module      根模块
+app.service     根服务
+main            入口文件
+
+-views
+    - activity  活动模块页面
+    - common    公共目录
+        error   错误页面
+
+```
+
+### 实现功能
+
+- [x] 通过守卫模拟拦截权限功能
+- [x] 统一返回响应体
+- [x] 统一错误，自定义日志输出文本
+- [x] 静态资源配置
+- [x] swagger 创建api文档
+- [x] 模板引擎配置 pug 
+- [x] 统一环境变量配置
+
+
+- [x] 模拟后台可配置链接，该链接显示对应的模板界面。模板应该是固定死的。只是渲染对应的seo和内容
+- [x] 通过参数请求，并设置cookies

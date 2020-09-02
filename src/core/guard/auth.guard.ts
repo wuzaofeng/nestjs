@@ -1,4 +1,6 @@
-import { Injectable, CanActivate, ExecutionContext, HttpException, HttpStatus } from "@nestjs/common";
+import { Injectable, CanActivate, ExecutionContext } from "@nestjs/common";
+import { CustomHTTPException } from "../exception/custom.exception";
+import { ErrorCode } from "src/constants/error";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -23,7 +25,9 @@ export class AuthGuard implements CanActivate {
       return true
     } else {
       // 既不是白名单，又没有token
-      throw new HttpException('没有权限访问, 请登录', HttpStatus.UNAUTHORIZED)
+      throw new CustomHTTPException({
+        errorCode: ErrorCode.Forbidden.CODE
+      })
     }
   }
 

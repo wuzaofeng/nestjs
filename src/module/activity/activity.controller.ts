@@ -1,8 +1,8 @@
-import { Controller, Get, Param, Res, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Res, UseGuards, Query } from '@nestjs/common';
 import { ActivityService } from './activity.service';
 import { renderError } from '../../common/render'
 import { Response } from 'express'
-import { ActivityGuard } from 'src/share/guard/activity.guard';
+import { ActivityGuard } from 'src/core/guard/activity.guard';
 
 @Controller('activity')
 export class ActivityController {
@@ -20,6 +20,9 @@ export class ActivityController {
       })
     }
 
+    res.cookie("name",'zhangsan',{maxAge: 900000, httpOnly: true}); 
+
+    console.log(scnl)
     return res.render('activity/default', data)
   }
 }
