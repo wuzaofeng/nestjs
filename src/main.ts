@@ -11,8 +11,6 @@ import { ResponseInterceptor } from './core/interceptor/response.interceptor';
 import { ConfigService } from '@nestjs/config';
 import { MyLoggerService } from './common/logger.service';
 
-import * as pug from 'pug'
-
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     // 日志输出

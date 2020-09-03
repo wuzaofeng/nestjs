@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MyLoggerService } from './logger.service';
+import { CommonController } from './common.controller';
+
 
 @Module({
     imports: [],
-    controllers: [],
+    controllers: [CommonController],
     providers: [
       MyLoggerService
     ],
