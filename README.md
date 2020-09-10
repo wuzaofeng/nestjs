@@ -159,7 +159,8 @@ nestjs项目分模块化，引入导出模块之后，也就会注入对应模�
             cors        跨域
             csrf, helmet    安全 ??
             locals      全局配置
-    
+    - utils             工具库服务
+    - api               调用java接口api
 - module    模块文件
     - activity  活动模块
     - blog
@@ -190,3 +191,11 @@ main            入口文件
 
 - [x] 模拟后台可配置链接，该链接显示对应的模板界面。模板应该是固定死的。只是渲染对应的seo和内容
 - [x] 通过参数请求，并设置cookies
+
+### 注意
+1. 项目提供了， 配置模块configModule，一个服务自定义日志服务MyLoggerService
+
+2. 目前注入config配置的serve, 和common 共用配置到response的locals中
+
+### 遗留问题
+1. 设置安全库时，静态资源不能访问

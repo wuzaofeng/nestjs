@@ -1,6 +1,7 @@
 import { Injectable, NestMiddleware, } from '@nestjs/common';
 import { MyLoggerService } from '../../common/logger.service';
 import { ConfigService } from '@nestjs/config';
+import { IsInApp } from 'src/utils/common';
 
 @Injectable()
 export class LocalsMiddleware implements NestMiddleware {
@@ -13,11 +14,16 @@ export class LocalsMiddleware implements NestMiddleware {
     const req = request as any;
     const res = response as any;
 
-    const staticCfg = this.configService.get('static')
-    console.log('static', staticCfg)
-    console.log(typeof staticCfg)
+    const staticCfg = this.configService.get('static') // 静态文件路径
+    const commonCfg = this.configService.get('common') // 公共配置
+
+    // 判断是不是在app内
+    const isApp = IsInApp(req)
+
     res.locals = {
-      ...staticCfg
+      ...staticCfg,
+      ...commonCfg,
+      isApp
     }
 
     next();

@@ -17,7 +17,6 @@ export class CookieParserMiddleware implements NestMiddleware {
   use(request: Request, response: Response, next: () => void) {
     const req: any = request;
     const res: any = response;
-    console.log(this.configService)
 
     this.cookieParser(req, res, next);
   }

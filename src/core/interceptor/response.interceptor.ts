@@ -27,7 +27,7 @@ export class ResponseInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map(data => {
         console.log('全局响应拦截器方法返回内容后');
-        console.log('datadata', data)
+        console.log('data', data)
 
         if (typeof data === 'undefined') {
           // 请求页面

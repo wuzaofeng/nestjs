@@ -9,7 +9,7 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { HttpExceptionFilter } from './core/filters/http-exception.filter';
 import { ResponseInterceptor } from './core/interceptor/response.interceptor';
 import { ConfigService } from '@nestjs/config';
-import { MyLoggerService } from './common/logger.service';
+// import { MyLoggerService } from './common/logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -19,6 +19,8 @@ async function bootstrap() {
 
   const configService: ConfigService = app.get(ConfigService)
   // const myLoggerService: MyLoggerService = app.get(MyLoggerService);
+
+  console.log('configService', configService)
 
   // 静态资源配置
   app.useStaticAssets(join(__dirname, '..', 'public'),{

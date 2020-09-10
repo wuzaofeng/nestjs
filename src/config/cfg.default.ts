@@ -1,5 +1,5 @@
 const port = 3000
-const staticURL = `http://192.168.67.32:${port}`
+const staticURL = `http://localhost:${port}`
 
 export default {
   server: {
@@ -17,5 +17,8 @@ export default {
     type: 'mysql',
     host: 'localhost',
     port: 3306
+  },
+  common: {
+    appDownLoad: 'https://h5.hstong.com/download/hstong/mobile/qr-code' // 华盛通app下载
   }
 }

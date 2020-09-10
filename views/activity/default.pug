@@ -11,6 +11,6 @@ block content
   div(class="features")
     #{content}
   div(class="display-flex footer")
-    if !isInApp
-      a(class="download" href="/common/downloadApp")  下载APP
-    a(class="cy-btn not-app" href="javascript:void(0);" @click="takeNewShot()") 我要打新
+    if !isApp
+      a(class="download" href=appDownLoad)  下载APP
+    a(class="cy-btn not-app" href="javascript:void(0);") 我要打新
