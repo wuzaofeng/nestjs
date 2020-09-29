@@ -9,12 +9,14 @@ import { CommonModule } from './common/common.module';
 
 
 import { CompressionMiddleware } from './core/middleware/compression.middleware';
-import { CSRFMiddleware } from './core/middleware/csrf.middleware';
-import { HelmetMiddleware } from './core/middleware/helmet.middleware';
+// import { CSRFMiddleware } from './core/middleware/csrf.middleware';
+// import { HelmetMiddleware } from './core/middleware/helmet.middleware';
 
 import { CorsMiddleware } from './core/middleware/cors.middleware';
 import { CookieParserMiddleware } from './core/middleware/cookie-parser.middleware';
 import { LocalsMiddleware } from './core/middleware/locals.middleware';
+import { ProxyMiddleware } from './core/middleware/proxy.middleware'
+import { UcModule } from './module/uc/uc.module';
 import ConfigModule from './config/config.module';
 
 // 环境变量路径
@@ -25,7 +27,8 @@ import ConfigModule from './config/config.module';
     CommonModule,
     BlogModule,
     UserModule,
-    ActivityModule],
+    ActivityModule,
+    UcModule],
   controllers: [AppController],
   providers: [AppService]
 })
@@ -38,7 +41,8 @@ export class AppModule implements NestModule {
       // CSRFMiddleware,
       // HelmetMiddleware,
       LocalsMiddleware,
-      CompressionMiddleware
+      CompressionMiddleware,
+      ProxyMiddleware,
     ];
 
     consumer.apply(...middlewares).forRoutes({ path: '*', method: RequestMethod.ALL });

@@ -1,0 +1,36 @@
+-var domainRes = 'https://rdaily.hstong.com'
+-var resVersion = '2009291052'
+html(lang="zh-cn")
+  head
+  meta(charset="utf-8")
+  meta(name="renderer" content="webkit")
+  meta(http-equiv="x-ua-compatible" content="ie=edge,chrome=1")
+  meta(name="apple-touch-fullscreen" content="yes")
+  meta(name="apple-mobile-web-app-title" content="华盛通")
+  meta(name="apple-mobile-web-app-capable" content="yes")
+  meta(name="referrer" content="origin")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no")
+  link(rel="stylesheet", href="https://r.hstong.com/v2/hst-ui/h5/css/rem-base.v2.css")
+  link(rel="icon" href=domainRes + '/v3/vbkr/uc/uc-cust-data-modify/daily/favicon.ico?v='+ resVersion)
+  link(rel="stylesheet", href=domainRes + '/v2/hst-ui/h5/css/rem-base.v2.css?v='+ resVersion)
+  link(rel="stylesheet", href=domainRes + '/v2/projects/h5/uc/modules/personal-data/styles/style.min.css?v='+ resVersion)
+  //- link(rel="stylesheet", href=domainRes + '/v3/vbkr/uc/uc-cust-data-modify/daily/css/chunk-vendors.css?v='+ resVersion)
+  //- link(rel="stylesheet", href=domainRes + '/v3/vbkr/uc/uc-cust-data-modify/daily/css/app.css?v='+ resVersion)
+
+  link(rel="stylesheet", href='http://192.168.67.32:8081/css/chunk-vendors.css?v='+ resVersion)
+  link(rel="stylesheet", href='http://192.168.67.32:8081/css/app.css?v='+ resVersion)
+  body
+    noscript
+      strong We're sorry but hs-h5-vue-uc-cust-data-modify doesn't work properly without JavaScript enabled. Please enable it to continue.
+
+    div#app
+
+    script(src=domainRes +'/v2/commons/scripts/flexible/flexible.750.min.js?v='+ resVersion)
+    script(src=domainRes+'/v2/plugins/jsencrypt/2.3.0/jsencrypt.min.js?v='+ resVersion)
+    script(src=domainRes+'/v2/commons/scripts/division/201909/division.min.js?v='+ resVersion)
+    script(src=domainRes+'/v2/plugins/exif-js/2.3.0/exif.min.js?v='+ resVersion)
+    script(src='http://192.168.67.32:8081/js/chunk-vendors.js?v='+ resVersion)
+    //- script(src=domainRes+'/v3/vbkr/uc/uc-cust-data-modify/daily/app.js?v='+ resVersion)
+    
+    script(src='http://192.168.67.32:8081/app.js?v='+ resVersion)
+
